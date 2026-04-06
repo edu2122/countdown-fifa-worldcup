@@ -1,0 +1,40 @@
+---
+import { hostCities } from '../data/cities';
+
+type Props = {
+	title: string;
+	copy: string;
+	filters: {
+		all: string;
+		canada: string;
+		mexico: string;
+		usa: string;
+	};
+};
+
+const { title, copy, filters } = Astro.props;
+---
+
+<section class="mt-7" id="cities-section">
+	<h2 id="cities-title" class="text-2xl font-black md:text-3xl">{title}</h2>
+	<p id="cities-copy" class="mt-1 text-sm text-red-100/85">{copy}</p>
+
+	<div class="mt-4 flex flex-wrap gap-2" role="group" aria-label="City filter">
+		<button class="filter-btn filter-btn-active" data-filter="all" type="button">{filters.all}</button>
+		<button class="filter-btn" data-filter="canada" type="button">{filters.canada}</button>
+		<button class="filter-btn" data-filter="mexico" type="button">{filters.mexico}</button>
+		<button class="filter-btn" data-filter="usa" type="button">{filters.usa}</button>
+	</div>
+
+	<ul class="mt-4 grid gap-3 sm:grid-cols-2 md:grid-cols-3" id="cities-list">
+		{hostCities.map((city) => (
+			<li class="city-card" data-country={city.country}>
+				<img src={city.flag} alt={`${city.countryLabel} flag`} class="flag-icon" width="24" height="16" loading="lazy" />
+				<div>
+					<p class="city-name">{city.name}</p>
+					<p class="city-country">{city.countryLabel}</p>
+				</div>
+			</li>
+		))}
+	</ul>
+</section>

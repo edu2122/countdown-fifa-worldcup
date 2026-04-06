@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro'
+import CountdownGrid from './CountdownGrid.astro'
+import HostCitiesSection from './HostCitiesSection.astro'
+import LanguageSwitcher from './LanguageSwitcher.astro'
+import type { Locale, Translation } from '../data/i18n'
+
+type Props = {
+  locale: Locale
+  t: Translation
+}
+
+const { locale, t } = Astro.props
+---
+
+<Layout title={t.title} description={t.description} lang={locale}>
+  <main
+    id="countdown-app"
+    data-locale={locale}
+    data-status-loading={t.statusLoading}
+    data-status-started={t.statusStarted}
+    data-kickoff-date-time="2026-06-11T00:00:00"
+    data-kickoff-time-zone="America/Mexico_City"
+    class="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-10 text-slate-100 sm:px-6 md:py-12 lg:px-8"
+  >
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+
+    <section
+      class="glass-panel relative z-10 w-full max-w-4xl rounded-3xl p-6 shadow-2xl md:p-10"
+    >
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <img
+            src="/logo-countdown.webp"
+            alt="Logo Countdown World Cup 2026"
+            class="h-12 w-12 rounded-xl border border-white/20 bg-white/10 p-1 object-contain"
+            width="48"
+            height="48"
+            loading="eager"
+            decoding="async"
+          />
+          <p
+            class="inline-flex rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs tracking-[0.2em] text-white/80 uppercase"
+          >
+            {t.badge}
+          </p>
+        </div>
+        <LanguageSwitcher
+          currentLocale={locale}
+          labels={{ es: 'ES', en: 'EN', fr: 'FR' }}
+        />
+      </div>
+
+      <h1 class="mb-3 text-3xl leading-tight font-black md:text-5xl">
+        {t.heroTitle}
+      </h1>
+      <p class="mb-3 max-w-2xl text-sm text-slate-200 md:text-base">
+        {t.heroCopy}
+      </p>
+      <p class="mb-8 text-sm text-amber-100/90">
+        <span>{t.kickoffLabel}</span>
+        <strong id="kickoff-local"> -- </strong>
+      </p>
+
+      <CountdownGrid
+        labels={{
+          days: t.days,
+          hours: t.hours,
+          minutes: t.minutes,
+          seconds: t.seconds
+        }}
+      />
+
+      <p id="status" class="mt-6 text-sm text-white/85">{t.statusLoading}</p>
+
+      <HostCitiesSection
+        title={t.citiesTitle}
+        copy={t.citiesCopy}
+        filters={{
+          all: t.filterAll,
+          canada: t.filterCanada,
+          mexico: t.filterMexico,
+          usa: t.filterUsa
+        }}
+      />
+
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a
+          href="https://www.fifa.com/"
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex cursor-pointer items-center rounded-full bg-amber-300 px-4 py-2 text-sm font-semibold text-red-950 transition-colors duration-200 hover:bg-amber-200 focus-visible:ring-2 focus-visible:ring-amber-100 focus-visible:ring-offset-2 focus-visible:ring-offset-red-900/40 motion-reduce:transition-none"
+        >
+          {t.fifaLink}
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    import '../scripts/countdown-app.ts'
+  </script>
+</Layout>

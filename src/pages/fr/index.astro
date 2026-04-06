@@ -1,0 +1,9 @@
+---
+import CountdownPage from '../../components/CountdownPage.astro';
+import { translations } from '../../data/i18n';
+
+const locale = 'fr';
+const t = translations[locale];
+---
+
+<CountdownPage locale={locale} t={t} />

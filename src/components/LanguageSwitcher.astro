@@ -1,0 +1,37 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { Locale } from '../data/i18n';
+
+type Props = {
+	currentLocale: Locale;
+	labels: Record<Locale, string>;
+	className?: string;
+};
+
+const { currentLocale, labels, className = '' } = Astro.props;
+
+const locales: Locale[] = ['es', 'en', 'fr'];
+const currentPath = Astro.url.pathname;
+
+const stripLocalePrefix = (path: string) => path.replace(/^\/(es|en|fr)(?=\/|$)/, '');
+const normalizedPath = stripLocalePrefix(currentPath).replace(/^\//, '');
+const pathForLocale = normalizedPath === '' ? '' : normalizedPath;
+---
+
+<nav class={`flex items-center gap-2 rounded-full border border-white/25 bg-black/15 p-1 ${className}`} aria-label="Language switcher">
+	{locales.map((locale) => {
+		const href = getRelativeLocaleUrl(locale, pathForLocale);
+		const isSelected = currentLocale === locale;
+
+		return (
+			<a
+				href={href}
+				class={`lang-btn ${isSelected ? 'lang-btn-active' : ''}`}
+				aria-current={isSelected ? 'page' : undefined}
+				data-locale-link={locale}
+			>
+				{labels[locale]}
+			</a>
+		);
+	})}
+</nav>

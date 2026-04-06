@@ -1,0 +1,31 @@
+---
+type Props = {
+	labels: {
+		days: string;
+		hours: string;
+		minutes: string;
+		seconds: string;
+	};
+};
+
+const { labels } = Astro.props;
+---
+
+<div class="grid gap-3 sm:grid-cols-2 md:grid-cols-4 md:gap-4" id="countdown-grid">
+	<article class="tile rounded-2xl p-4 md:p-5">
+		<p id="days" class="value text-4xl font-black md:text-5xl">--</p>
+		<p id="days-label" class="label mt-1 text-xs tracking-[0.18em] text-white/75 uppercase">{labels.days}</p>
+	</article>
+	<article class="tile rounded-2xl p-4 md:p-5">
+		<p id="hours" class="value text-4xl font-black md:text-5xl">--</p>
+		<p id="hours-label" class="label mt-1 text-xs tracking-[0.18em] text-white/75 uppercase">{labels.hours}</p>
+	</article>
+	<article class="tile rounded-2xl p-4 md:p-5">
+		<p id="minutes" class="value text-4xl font-black md:text-5xl">--</p>
+		<p id="minutes-label" class="label mt-1 text-xs tracking-[0.18em] text-white/75 uppercase">{labels.minutes}</p>
+	</article>
+	<article class="tile rounded-2xl p-4 md:p-5">
+		<p id="seconds" class="value text-4xl font-black md:text-5xl">--</p>
+		<p id="seconds-label" class="label mt-1 text-xs tracking-[0.18em] text-white/75 uppercase">{labels.seconds}</p>
+	</article>
+</div>

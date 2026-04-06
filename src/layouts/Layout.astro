@@ -1,0 +1,38 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	lang?: string;
+}
+
+const {
+	title = 'Cuenta regresiva Mundial 2026',
+	description = 'Contador para el inicio del Mundial 2026 en USA, Mexico y Canada.',
+	lang = 'es'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;900&family=Barlow+Condensed:wght@500;700;900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="icon" type="image/webp" href="/logo-countdown.webp" />
+		<link rel="shortcut icon" href="/logo-countdown.webp" />
+		<link rel="apple-touch-icon" href="/logo-countdown.webp" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
