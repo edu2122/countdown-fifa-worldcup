@@ -11,7 +11,7 @@ if (!appEl) {
 } else {
 	const readDataset = (key: string, fallback: string) => appEl.dataset[key] ?? fallback
 
-	const kickoffDate = new Date('2026-06-11T00:00:00-05:00')
+	const kickoffDate = new Date('2026-06-11T14:00:00-05:00')
 
 	const getStoredLocale = () => localStorage.getItem('preferred-locale')
 	const getStoredFilter = () => localStorage.getItem('preferred-city-filter')
@@ -77,8 +77,13 @@ if (!appEl) {
 		const visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
 		const formatter = new Intl.DateTimeFormat(localeCode, {
 			timeZone: visitorTimeZone,
-			dateStyle: 'full',
-			timeStyle: 'short'
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit',
+			hour12: false
 		})
 
 		kickoffLocalEl.textContent = `${formatter.format(kickoffDate)} (${visitorTimeZone})`
