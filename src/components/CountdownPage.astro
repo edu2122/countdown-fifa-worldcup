@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import CountdownGrid from './CountdownGrid.astro'
-import HostCitiesSection from './HostCitiesSection.astro'
-import LanguageSwitcher from './LanguageSwitcher.astro'
-import type { Locale, Translation } from '../data/i18n'
+import Layout from '@/layouts/Layout.astro'
+import CountdownGrid from '@/components/CountdownGrid.astro'
+import HostCitiesSection from '@/components/HostCitiesSection.astro'
+import LanguageSwitcher from '@/components/LanguageSwitcher.astro'
+import type { Locale, Translation } from '@/data/i18n'
 
 type Props = {
   locale: Locale
@@ -100,6 +100,6 @@ const { locale, t } = Astro.props
   </main>
 
   <script>
-    import '../scripts/countdown-app.ts'
+    import '@/scripts/countdown-app.ts'
   </script>
 </Layout>
