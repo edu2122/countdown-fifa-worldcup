@@ -44,6 +44,63 @@ if (!appEl) {
 	const currentLocale = (appEl.dataset.locale as SupportedLocale | undefined) ?? getPathLocale()
 	localStorage.setItem('preferred-locale', currentLocale)
 
+	const visualModeKey = 'preferred-visual-mode'
+	type VisualMode = 'stadium' | 'sober' | 'hud'
+	const availableVisualModes: VisualMode[] = ['stadium', 'sober', 'hud']
+	const getStoredVisualMode = () => localStorage.getItem(visualModeKey)
+
+	const setVisualMode = (mode: VisualMode) => {
+		appEl.classList.remove('mode-stadium', 'mode-sober', 'mode-hud')
+		appEl.classList.add(`mode-${mode}`)
+		localStorage.setItem(visualModeKey, mode)
+
+		document.querySelectorAll<HTMLButtonElement>('.theme-btn').forEach((button) => {
+			const isActive = button.dataset.visualMode === mode
+			button.classList.toggle('theme-btn-active', isActive)
+			button.setAttribute('aria-pressed', String(isActive))
+		})
+	}
+
+	const applyInitialVisualMode = () => {
+		const storedMode = getStoredVisualMode() as VisualMode | null
+		if (storedMode && availableVisualModes.includes(storedMode)) {
+			setVisualMode(storedMode)
+			return
+		}
+		setVisualMode('stadium')
+	}
+
+	const listenForVisualModeShortcut = () => {
+		window.addEventListener('keydown', (event) => {
+			if (!event.altKey || event.shiftKey || event.ctrlKey || event.metaKey) {
+				return
+			}
+
+			if (event.key === '1') {
+				setVisualMode('stadium')
+			}
+
+			if (event.key === '2') {
+				setVisualMode('sober')
+			}
+
+			if (event.key === '3') {
+				setVisualMode('hud')
+			}
+		})
+	}
+
+	const registerVisualModeButtons = () => {
+		document.querySelectorAll<HTMLButtonElement>('.theme-btn').forEach((button) => {
+			button.addEventListener('click', () => {
+				const selectedMode = button.dataset.visualMode as VisualMode | undefined
+				if (selectedMode && availableVisualModes.includes(selectedMode)) {
+					setVisualMode(selectedMode)
+				}
+			})
+		})
+	}
+
 	document.querySelectorAll<HTMLElement>('[data-locale-link]').forEach((link) => {
 		link.addEventListener('click', () => {
 			const locale = link.dataset.localeLink
@@ -161,5 +218,8 @@ if (!appEl) {
 
 	updateKickoffLocal()
 	updateCountdown()
+	registerVisualModeButtons()
+	applyInitialVisualMode()
+	listenForVisualModeShortcut()
 	setInterval(updateCountdown, 1000)
 }

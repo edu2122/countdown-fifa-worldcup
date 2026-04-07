@@ -28,8 +28,14 @@ const { locale, t } = Astro.props
     <div class="glow glow-3"></div>
 
     <section
-      class="glass-panel relative z-10 w-full max-w-4xl rounded-3xl p-6 shadow-2xl md:p-10"
+      class="glass-panel stadium-shell relative z-10 w-full max-w-4xl rounded-3xl p-6 shadow-2xl md:p-10"
     >
+      <div class="pitch-lines" aria-hidden="true"></div>
+      <span class="corner corner-tl" aria-hidden="true"></span>
+      <span class="corner corner-tr" aria-hidden="true"></span>
+      <span class="corner corner-bl" aria-hidden="true"></span>
+      <span class="corner corner-br" aria-hidden="true"></span>
+
       <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-3">
           <img
@@ -42,7 +48,7 @@ const { locale, t } = Astro.props
             decoding="async"
           />
           <p
-            class="inline-flex rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs tracking-[0.2em] text-white/80 uppercase"
+            class="tech-chip inline-flex rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs tracking-[0.2em] text-white/80 uppercase"
           >
             {t.badge}
           </p>
@@ -53,7 +59,16 @@ const { locale, t } = Astro.props
         />
       </div>
 
-      <h1 class="mb-3 text-3xl leading-tight font-black md:text-5xl">
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <p class="text-xs font-semibold tracking-[0.16em] text-slate-200/85 uppercase">Visual Theme</p>
+        <div class="theme-switcher" role="group" aria-label="Visual theme selector">
+          <button type="button" class="theme-btn" data-visual-mode="stadium">Stadium</button>
+          <button type="button" class="theme-btn" data-visual-mode="sober">Sober</button>
+          <button type="button" class="theme-btn" data-visual-mode="hud">HUD</button>
+        </div>
+      </div>
+
+      <h1 class="title-tech mb-3 text-3xl leading-tight font-black md:text-5xl">
         {t.heroTitle}
       </h1>
       <p class="mb-3 max-w-2xl text-sm text-slate-200 md:text-base">
@@ -61,7 +76,7 @@ const { locale, t } = Astro.props
       </p>
       <p class="mb-8 text-sm text-amber-100/90">
         <span>{t.kickoffLabel}</span>
-        <strong id="kickoff-local"> -- </strong>
+        <strong id="kickoff-local" class="kickoff-tech"> -- </strong>
       </p>
 
       <CountdownGrid
@@ -73,7 +88,7 @@ const { locale, t } = Astro.props
         }}
       />
 
-      <p id="status" class="mt-6 text-sm text-white/85">{t.statusLoading}</p>
+      <p id="status" class="tech-status mt-6 text-sm text-white/85">{t.statusLoading}</p>
 
       <HostCitiesSection
         title={t.citiesTitle}
@@ -91,7 +106,7 @@ const { locale, t } = Astro.props
           href="https://www.fifa.com/"
           target="_blank"
           rel="noreferrer"
-          class="inline-flex cursor-pointer items-center rounded-full bg-amber-300 px-4 py-2 text-sm font-semibold text-red-950 transition-colors duration-200 hover:bg-amber-200 focus-visible:ring-2 focus-visible:ring-amber-100 focus-visible:ring-offset-2 focus-visible:ring-offset-red-900/40 motion-reduce:transition-none"
+          class="cta-tech inline-flex cursor-pointer items-center rounded-full bg-amber-300 px-4 py-2 text-sm font-semibold text-red-950 transition-colors duration-200 hover:bg-amber-200 focus-visible:ring-2 focus-visible:ring-amber-100 focus-visible:ring-offset-2 focus-visible:ring-offset-red-900/40 motion-reduce:transition-none"
         >
           {t.fifaLink}
         </a>

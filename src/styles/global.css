@@ -3,7 +3,7 @@
 :root {
 	font-family: "Barlow", "Segoe UI", sans-serif;
 	color: #f8fafc;
-	background-color: #030712;
+	background-color: #0b1120;
 }
 
 * {
@@ -15,10 +15,10 @@ body {
 	min-height: 100vh;
 	font-family: "Barlow", "Segoe UI", sans-serif;
 	background:
-		radial-gradient(circle at 12% 24%, rgba(220, 38, 38, 0.45), transparent 38%),
-		radial-gradient(circle at 88% 20%, rgba(251, 191, 36, 0.35), transparent 36%),
-		radial-gradient(circle at 50% 82%, rgba(239, 68, 68, 0.3), transparent 40%),
-		linear-gradient(155deg, #450a0a 0%, #7f1d1d 42%, #991b1b 100%);
+		radial-gradient(circle at 11% 16%, rgba(20, 184, 166, 0.24), transparent 33%),
+		radial-gradient(circle at 88% 18%, rgba(251, 191, 36, 0.22), transparent 35%),
+		radial-gradient(circle at 50% 86%, rgba(220, 38, 38, 0.34), transparent 43%),
+		linear-gradient(150deg, #111827 0%, #6d1824 52%, #0f172a 100%);
 	background-attachment: fixed;
 }
 
@@ -65,16 +65,156 @@ h3 {
 }
 
 .glass-panel {
-	background: linear-gradient(135deg, rgba(127, 29, 29, 0.82), rgba(69, 10, 10, 0.58));
-	backdrop-filter: blur(8px);
-	border: 1px solid rgba(255, 255, 255, 0.16);
+	background: linear-gradient(140deg, rgba(21, 28, 46, 0.78), rgba(112, 24, 45, 0.6));
+	backdrop-filter: blur(11px);
+	border: 1px solid rgba(148, 163, 184, 0.35);
 	animation: rise 800ms ease-out;
 }
 
+.mode-sober .glass-panel {
+	background: linear-gradient(140deg, rgba(26, 34, 54, 0.9), rgba(95, 26, 43, 0.72));
+	border-color: rgba(148, 163, 184, 0.28);
+	box-shadow:
+		0 18px 42px rgba(8, 15, 35, 0.42),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.mode-hud .glass-panel {
+	background: linear-gradient(140deg, rgba(13, 18, 34, 0.78), rgba(105, 16, 41, 0.62));
+	border-color: rgba(56, 189, 248, 0.48);
+	box-shadow:
+		0 0 0 1px rgba(56, 189, 248, 0.25) inset,
+		0 22px 60px rgba(8, 15, 35, 0.56);
+}
+
+.stadium-shell {
+	overflow: hidden;
+	box-shadow:
+		0 24px 60px rgba(8, 15, 35, 0.58),
+		inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.mode-sober .stadium-shell {
+	box-shadow:
+		0 16px 40px rgba(8, 15, 35, 0.44),
+		inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.mode-hud .stadium-shell {
+	box-shadow:
+		0 26px 64px rgba(8, 15, 35, 0.62),
+		0 0 44px rgba(56, 189, 248, 0.18),
+		inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.pitch-lines {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	opacity: 0.32;
+	background-image:
+		repeating-linear-gradient(90deg, rgba(148, 163, 184, 0.08) 0, rgba(148, 163, 184, 0.08) 1px, transparent 1px, transparent 56px),
+		linear-gradient(90deg, transparent 49.5%, rgba(251, 191, 36, 0.24) 50%, transparent 50.5%);
+	mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.8));
+}
+
+.mode-sober .pitch-lines {
+	opacity: 0.2;
+}
+
+.mode-hud .pitch-lines {
+	opacity: 0.42;
+	background-image:
+		repeating-linear-gradient(90deg, rgba(56, 189, 248, 0.11) 0, rgba(56, 189, 248, 0.11) 1px, transparent 1px, transparent 52px),
+		linear-gradient(90deg, transparent 49.5%, rgba(251, 191, 36, 0.35) 50%, transparent 50.5%);
+}
+
+.corner {
+	position: absolute;
+	width: 26px;
+	height: 26px;
+	border: 2px solid rgba(251, 191, 36, 0.82);
+	border-radius: 5px;
+	opacity: 0.92;
+	pointer-events: none;
+}
+
+.mode-sober .corner {
+	opacity: 0.68;
+}
+
+.mode-hud .corner {
+	opacity: 1;
+	border-color: rgba(56, 189, 248, 0.95);
+	box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+
+.corner-tl {
+	top: 12px;
+	left: 12px;
+	border-right: 0;
+	border-bottom: 0;
+}
+
+.corner-tr {
+	top: 12px;
+	right: 12px;
+	border-left: 0;
+	border-bottom: 0;
+}
+
+.corner-bl {
+	bottom: 12px;
+	left: 12px;
+	border-right: 0;
+	border-top: 0;
+}
+
+.corner-br {
+	bottom: 12px;
+	right: 12px;
+	border-left: 0;
+	border-top: 0;
+}
+
 .tile {
-	background: linear-gradient(170deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
-	border: 1px solid rgba(255, 255, 255, 0.24);
+	background: linear-gradient(170deg, rgba(255, 255, 255, 0.17), rgba(15, 23, 42, 0.42));
+	border: 1px solid rgba(148, 163, 184, 0.35);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+	transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.mode-sober .tile {
+	border-color: rgba(148, 163, 184, 0.24);
+	background: linear-gradient(170deg, rgba(255, 255, 255, 0.12), rgba(15, 23, 42, 0.52));
+}
+
+.mode-hud .tile {
+	border-color: rgba(56, 189, 248, 0.34);
+	background: linear-gradient(170deg, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.5));
+}
+
+.tile:hover {
+	transform: translateY(-3px);
+	border-color: rgba(251, 191, 36, 0.6);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.24),
+		0 10px 22px rgba(8, 15, 35, 0.36);
+}
+
+.mode-sober .tile:hover {
+	border-color: rgba(251, 191, 36, 0.45);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.18),
+		0 8px 18px rgba(8, 15, 35, 0.3);
+}
+
+.mode-hud .tile:hover {
+	border-color: rgba(56, 189, 248, 0.68);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.24),
+		0 12px 24px rgba(8, 15, 35, 0.4),
+		0 0 18px rgba(56, 189, 248, 0.26);
 }
 
 .city-chip {
@@ -164,6 +304,67 @@ h3 {
 	color: #7f1d1d;
 }
 
+.tech-chip {
+	box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.25) inset;
+	letter-spacing: 0.18em;
+}
+
+.title-tech {
+	text-wrap: balance;
+	text-shadow:
+		0 7px 26px rgba(6, 11, 29, 0.52),
+		0 0 24px rgba(251, 191, 36, 0.18);
+}
+
+.mode-sober .title-tech {
+	text-shadow:
+		0 5px 18px rgba(6, 11, 29, 0.42),
+		0 0 10px rgba(251, 191, 36, 0.1);
+}
+
+.mode-hud .title-tech {
+	text-shadow:
+		0 8px 28px rgba(6, 11, 29, 0.58),
+		0 0 22px rgba(56, 189, 248, 0.28);
+}
+
+.cta-tech {
+	box-shadow:
+		0 12px 24px rgba(120, 53, 15, 0.4),
+		inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.mode-sober .cta-tech {
+	box-shadow:
+		0 8px 16px rgba(120, 53, 15, 0.32),
+		inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.mode-hud .cta-tech {
+	box-shadow:
+		0 12px 24px rgba(120, 53, 15, 0.42),
+		0 0 14px rgba(251, 191, 36, 0.25),
+		inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.kickoff-tech {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	margin-left: 0.3rem;
+	padding: 0.08rem 0.5rem;
+	border: 1px solid rgba(251, 191, 36, 0.42);
+	border-radius: 9999px;
+	font-family: "Barlow Condensed", "Barlow", sans-serif;
+	letter-spacing: 0.03em;
+	background: rgba(15, 23, 42, 0.28);
+}
+
+.tech-status {
+	padding-left: 0.7rem;
+	border-left: 2px solid rgba(251, 191, 36, 0.62);
+}
+
 .lang-btn {
 	cursor: pointer;
 	border: 0;
@@ -189,6 +390,46 @@ h3 {
 
 .lang-btn-active {
 	background: rgba(251, 191, 36, 0.92);
+	color: #7f1d1d;
+}
+
+.theme-switcher {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.25rem;
+	border-radius: 9999px;
+	border: 1px solid rgba(148, 163, 184, 0.36);
+	background: rgba(15, 23, 42, 0.42);
+}
+
+.theme-btn {
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: 9999px;
+	padding: 0.3rem 0.72rem;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: rgba(241, 245, 249, 0.88);
+	background: transparent;
+	transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.theme-btn:hover {
+	background: rgba(148, 163, 184, 0.16);
+	border-color: rgba(148, 163, 184, 0.4);
+}
+
+.theme-btn:focus-visible {
+	outline: 2px solid rgba(251, 191, 36, 0.85);
+	outline-offset: 2px;
+}
+
+.theme-btn-active {
+	background: rgba(251, 191, 36, 0.9);
+	border-color: rgba(251, 191, 36, 0.95);
 	color: #7f1d1d;
 }
 
@@ -234,7 +475,14 @@ h3 {
 	.lang-btn,
 	.city-chip,
 	.city-card,
-	.filter-btn {
+	.filter-btn,
+	.tile,
+	.theme-btn {
 		transition: none;
+	}
+
+	.pitch-lines,
+	.corner {
+		display: none;
 	}
 }
